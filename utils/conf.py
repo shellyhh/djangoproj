@@ -15,3 +15,7 @@ class Conf(object):
         except:
             result = ""
         return result
+
+
+
+conf = Conf("conf.ini")
