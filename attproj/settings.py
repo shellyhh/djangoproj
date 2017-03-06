@@ -27,6 +27,7 @@ SECRET_KEY = 'c(9%w@2^&o#xs^3606(**8luuzsn2$&rzrz&8id#$b%0!+1cg)'
 DEBUG = True
 import ConfigParser
 cfg = ConfigParser.ConfigParser()
+cfg.read("conf.ini")
 if DEBUG:
     cfg.read("conf.ini")
 DBNAME = cfg.get("DBCFG", "DBNAME")
@@ -119,7 +120,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -153,3 +154,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+# CELERY STUFF
+# redis://:password@hostnam
+CELERY_BROKER_URL = 'redis://:foo@localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://:foo@localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Shanghai'
